@@ -2,7 +2,7 @@
   "name": "file-templates-n",
   "displayName": "++File Templates++",
   "description": "Create reusable file and directory templates",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "preview": true,
   "publisher": "danieltodor",
   "repository": {

@@ -61,7 +61,8 @@ export async function directoryExists(URI: vscode.Uri): Promise<boolean> {
 export async function copyFiles(sourceURI: vscode.Uri, destinationURI: vscode.Uri): Promise<void> {
     const cpOptions: fs.CopyOptions = {
         recursive: true,
-        force: true
+        force: false,
+        dereference: true
     };
     await fs.cp(sourceURI.path, destinationURI.path, cpOptions, () => {});
 }
