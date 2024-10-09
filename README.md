@@ -1,6 +1,7 @@
 For new projects, instead of creating the same files and directories over and over again,
 like `README.md`, `.gitignore` or the `src` directory, create reusable template files and directories,
-some with pre filled content.\
+some with pre filled content.
+
 When used, this extension will copy paste the contents of the given template(s).
 
 | Command | Description |

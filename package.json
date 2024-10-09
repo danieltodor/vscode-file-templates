@@ -5,6 +5,10 @@
   "version": "0.0.1",
   "preview": true,
   "publisher": "danieltodor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danieltodor/vscode-file-templates"
+  },
   "engines": {
     "vscode": "^1.94.0"
   },
