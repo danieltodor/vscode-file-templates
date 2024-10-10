@@ -1,8 +1,8 @@
 {
   "name": "file-templates-n",
-  "displayName": "++File Templates++",
+  "displayName": "File/Directory Templates",
   "description": "Create reusable file and directory templates",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "preview": true,
   "publisher": "danieltodor",
   "repository": {
@@ -50,6 +50,23 @@
         "title": "Use Templates",
         "category": "File Templates"
       }
+    ],
+    "configuration":[
+        {
+            "title": "File Templates",
+            "properties": {
+                "file-templates-n.dereferenceSymlinks": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "In case of a symlink, copy the file itself, instead of a symlink"
+                },
+                "file-templates-n.force": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Overwrite existing files on conflict"
+                }
+            }
+        }
     ]
   },
   "scripts": {

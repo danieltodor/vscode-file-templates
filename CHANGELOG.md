@@ -1,3 +1,10 @@
+## [0.0.3] - 2024-10-10
+### Added
+- Settings for dereference and force
+
+### Changed
+- Show error message if the copy operation failed
+
 ## [0.0.2] - 2024-10-09
 ### Changed
 - Dereference symlinks

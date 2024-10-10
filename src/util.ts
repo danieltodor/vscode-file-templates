@@ -5,11 +5,13 @@ enum State {
     initialized
 }
 
+export function getConfigValue(name: string, extensionName: string = 'file-templates-n'): unknown {
+    return vscode.workspace.getConfiguration(extensionName).get(name);
+}
+
 export async function getExtensionDirectory(context: vscode.ExtensionContext): Promise<vscode.Uri> {
-    console.log('Get extension directory');
     const URI = context.globalStorageUri.with({scheme: 'file'});
     if (!context.globalState.get(State.initialized.toString())) {
-        console.log('Creating directory because it does not exist');
         await vscode.workspace.fs.createDirectory(URI);
         context.globalState.update(State.initialized.toString(), true);
     }
@@ -17,7 +19,6 @@ export async function getExtensionDirectory(context: vscode.ExtensionContext): P
 }
 
 export async function getTemplates(extensionDirectory: vscode.Uri): Promise<string[]> {
-    console.log('Get templates');
     const directoryList = await vscode.workspace.fs.readDirectory(extensionDirectory);
     return directoryList.map(item => item[0]);
 }
@@ -61,8 +62,12 @@ export async function directoryExists(URI: vscode.Uri): Promise<boolean> {
 export async function copyFiles(sourceURI: vscode.Uri, destinationURI: vscode.Uri): Promise<void> {
     const cpOptions: fs.CopyOptions = {
         recursive: true,
-        force: false,
-        dereference: true
+        dereference: getConfigValue('dereferenceSymlinks') as boolean,
+        force: getConfigValue('force') as boolean
     };
-    await fs.cp(sourceURI.path, destinationURI.path, cpOptions, () => {});
+    await fs.cp(sourceURI.path, destinationURI.path, cpOptions, (error) => {
+        if (error?.message) {
+            vscode.window.showErrorMessage(error.message);
+        }
+    });
 }
