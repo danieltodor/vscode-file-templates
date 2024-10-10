@@ -2,7 +2,7 @@
   "name": "file-templates-n",
   "displayName": "File/Directory Templates",
   "description": "Create reusable file and directory templates",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "preview": true,
   "publisher": "danieltodor",
   "repository": {
@@ -23,37 +23,37 @@
       {
         "command": "file-templates.createTemplate",
         "title": "Create",
-        "category": "File Templates"
+        "category": "File/Directory Templates"
       },
       {
         "command": "file-templates.openTemplate",
         "title": "Open",
-        "category": "File Templates"
+        "category": "File/Directory Templates"
       },
       {
         "command": "file-templates.renameTemplate",
         "title": "Rename",
-        "category": "File Templates"
+        "category": "File/Directory Templates"
       },
       {
         "command": "file-templates.removeTemplate",
         "title": "Remove",
-        "category": "File Templates"
+        "category": "File/Directory Templates"
       },
       {
         "command": "file-templates.useTemplate",
         "title": "Use Template",
-        "category": "File Templates"
+        "category": "File/Directory Templates"
       },
       {
         "command": "file-templates.useTemplates",
         "title": "Use Templates",
-        "category": "File Templates"
+        "category": "File/Directory Templates"
       }
     ],
     "configuration":[
         {
-            "title": "File Templates",
+            "title": "File/Directory Templates",
             "properties": {
                 "file-templates-n.dereferenceSymlinks": {
                     "type": "boolean",
