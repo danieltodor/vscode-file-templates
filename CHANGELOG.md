@@ -1,3 +1,7 @@
+## [0.0.6] - 2024-10-10
+### Changed
+- Keybindings prefixed with the extension name
+
 ## [0.0.5] - 2024-10-10
 ### Added
 - If any command fails, show an error message with details

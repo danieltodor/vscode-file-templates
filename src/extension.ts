@@ -20,32 +20,32 @@ async function runCommand(command: (...args: any[]) => Promise<void>, ...args: a
 
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates.createTemplate', () => {
+        vscode.commands.registerCommand('file-templates-n.createTemplate', () => {
             runCommand(createTemplate, context);
         })
     );
 	context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates.openTemplate', () => {
+        vscode.commands.registerCommand('file-templates-n.openTemplate', () => {
             runCommand(openTemplate, context);
         })
     );
     context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates.renameTemplate', () => {
+        vscode.commands.registerCommand('file-templates-n.renameTemplate', () => {
             runCommand(renameTemplate, context);
         })
     );
     context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates.removeTemplate', () => {
+        vscode.commands.registerCommand('file-templates-n.removeTemplate', () => {
             runCommand(removeTemplate, context);
         })
     );
 	context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates.useTemplate', () => {
+        vscode.commands.registerCommand('file-templates-n.useTemplate', () => {
             runCommand(useTemplate, context);
         })
     );
 	context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates.useTemplates', () => {
+        vscode.commands.registerCommand('file-templates-n.useTemplates', () => {
             runCommand(useTemplate, context, true);
         })
     );
