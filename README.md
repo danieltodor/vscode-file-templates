@@ -2,7 +2,7 @@ For new projects, instead of creating the same files and directories over and ov
 like `README.md`, `.gitignore` or the `src` directory, create reusable template files and directories,
 some with pre filled content.
 
-When used, this extension will copy paste the contents of the given template(s) into the workspace.
+When used, this extension will copy paste the content of a template into the workspace.
 
 ### Commands
 | Name | Description |

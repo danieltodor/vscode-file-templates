@@ -5,6 +5,12 @@ enum State {
     initialized
 }
 
+export function getErrorMessage(error: unknown): string | void {
+    if (error) {
+        return error instanceof Error ? error.message : String(error);
+    }
+}
+
 export function getConfigValue(name: string, extensionName: string = 'file-templates-n'): unknown {
     return vscode.workspace.getConfiguration(extensionName).get(name);
 }
@@ -65,9 +71,10 @@ export async function copyFiles(sourceURI: vscode.Uri, destinationURI: vscode.Ur
         dereference: getConfigValue('dereferenceSymlinks') as boolean,
         force: getConfigValue('force') as boolean
     };
-    await fs.cp(sourceURI.path, destinationURI.path, cpOptions, (error) => {
-        if (error?.message) {
-            vscode.window.showErrorMessage(error.message);
+    await fs.cp(sourceURI.fsPath, destinationURI.fsPath, cpOptions, (error) => {
+        const message = getErrorMessage(error);
+        if (message) {
+            vscode.window.showErrorMessage(message);
         }
     });
 }

@@ -1,3 +1,10 @@
+## [0.0.5] - 2024-10-10
+### Added
+- If any command fails, show an error message with details
+
+### Changed
+- Copy URI path changed to fsPath
+
 ## [0.0.4] - 2024-10-10
 ### Changed
 - Command category name changed to match extension name
