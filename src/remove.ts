@@ -3,7 +3,12 @@ import * as util from './util';
 
 export async function removeTemplate(context: vscode.ExtensionContext): Promise<void> {
     const {extensionDirectory, existingTemplates} = await util.getCommonVariables(context);
-    const templateName = await vscode.window.showQuickPick(existingTemplates);
+    const templateName = await vscode.window.showQuickPick(
+        existingTemplates,
+        {
+            placeHolder: 'Select the template you want to remove'
+        }
+    );
     if (!templateName) {
         return;
     }

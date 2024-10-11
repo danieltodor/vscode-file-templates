@@ -3,7 +3,12 @@ import * as util from './util';
 
 export async function createTemplate(context: vscode.ExtensionContext): Promise<void> {
     const {extensionDirectory, existingTemplates} = await util.getCommonVariables(context);
-    const newTemplateName = await util.showEditableQuickPick('Name of the new template', existingTemplates);
+    const newTemplateName = await util.showEditableQuickPick(
+        existingTemplates,
+        {
+            placeHolder: 'Name of the new template'
+        }
+    );
     const URI = await createNewTemplateDirectory(extensionDirectory, newTemplateName);
     if (URI) {
         await vscode.env.openExternal(URI);

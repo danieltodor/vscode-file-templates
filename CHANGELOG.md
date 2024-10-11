@@ -1,3 +1,7 @@
+## [0.0.7] - 2024-10-11
+### Added
+- Placeholder added to every quickpick
+
 ## [0.0.6] - 2024-10-10
 ### Changed
 - Keybindings prefixed with the extension name

@@ -7,7 +7,13 @@ export async function useTemplate(context: vscode.ExtensionContext, many: boolea
         return;
     }
     const {extensionDirectory, existingTemplates} = await util.getCommonVariables(context);
-    const result = await vscode.window.showQuickPick(existingTemplates, {canPickMany: many});
+    const result = await vscode.window.showQuickPick(
+        existingTemplates,
+        {
+            placeHolder: 'Select the template you want to use',
+            canPickMany: many
+        }
+    );
     if (!result) {
         return;
     }
@@ -30,7 +36,13 @@ async function getDestinationURIs(): Promise<vscode.Uri[]> {
     }
     else {
         const items = vscode.workspace.workspaceFolders.map(item => item.name);
-        const result = await vscode.window.showQuickPick(items, {canPickMany: true});
+        const result = await vscode.window.showQuickPick(
+            items,
+            {
+                placeHolder: 'Select the target workspace(s)',
+                canPickMany: true
+            }
+        );
         if (!result) {
             return [];
         }

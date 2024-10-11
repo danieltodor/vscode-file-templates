@@ -5,6 +5,10 @@ enum State {
     initialized
 }
 
+export async function sleep(milliseconds: number) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
 export function getErrorMessage(error: unknown): string | void {
     if (error) {
         return error instanceof Error ? error.message : String(error);
@@ -35,11 +39,17 @@ export async function getCommonVariables(context: vscode.ExtensionContext) {
     return {extensionDirectory, existingTemplates};
 }
 
-export async function showEditableQuickPick(placeholder: string, items: string[]): Promise<string> {
+export async function showEditableQuickPick(items: string[], options: vscode.QuickPickOptions = {}): Promise<string> {
     return new Promise((resolve) => {
         const quickPick = vscode.window.createQuickPick();
-        quickPick.placeholder = placeholder;
+        quickPick.title = options.title;
+        quickPick.placeholder = options.placeHolder;
+        quickPick.canSelectMany = options.canPickMany || false;
+        quickPick.ignoreFocusOut = options.ignoreFocusOut || false;
+        quickPick.matchOnDescription = options.matchOnDescription || false;
+        quickPick.matchOnDetail = options.matchOnDetail || false;
         quickPick.items = items.map(item => ({label: item}));
+        // Add current value to items, so new value can also be selected
         quickPick.onDidChangeValue(() => {
             if (!items.includes(quickPick.value)) {
                 quickPick.items = [quickPick.value, ...items].map(item => ({label: item}));
