@@ -19,9 +19,9 @@ export async function useTemplate(context: vscode.ExtensionContext, many: boolea
     }
     const templateNames = typeof result === 'string' ? [result] : result;
     const destinationURIs = await getDestinationURIs();
-    for (const destinationURI of destinationURIs) {
-        for (const templateName of templateNames) {
-            const sourceURI = vscode.Uri.joinPath(extensionDirectory, templateName);
+    for (const templateName of templateNames) {
+        const sourceURI = vscode.Uri.joinPath(extensionDirectory, templateName);
+        for (const destinationURI of destinationURIs) {
             await util.copyFiles(sourceURI, destinationURI);
         }
     }
