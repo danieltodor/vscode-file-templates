@@ -2,7 +2,8 @@
     "name": "file-templates-n",
     "displayName": "File/Directory Templates",
     "description": "Create reusable file and directory templates",
-    "version": "0.0.7",
+    "icon": "./media/icon.png",
+    "version": "0.0.8",
     "preview": false,
     "publisher": "danieltodor",
     "repository": {
@@ -51,6 +52,20 @@
                 "category": "File/Directory Templates"
             }
         ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "file-templates-n.useTemplate",
+                    "when": "explorerResourceIsFolder",
+                    "group": "2_workspace"
+                },
+                {
+                    "command": "file-templates-n.useTemplates",
+                    "when": "explorerResourceIsFolder",
+                    "group": "2_workspace"
+                }
+            ]
+        },
         "configuration": [
             {
                 "title": "File/Directory Templates",

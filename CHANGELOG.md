@@ -1,3 +1,7 @@
+## [0.0.8] - 2024-10-12
+### Added
+- Explorer context menu to be able to use templates in any directory
+
 ## [0.0.7] - 2024-10-11
 ### Added
 - Placeholder added to every quickpick

@@ -40,13 +40,13 @@ export function activate(context: vscode.ExtensionContext) {
         })
     );
 	context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates-n.useTemplate', () => {
-            runCommand(useTemplate, context);
+        vscode.commands.registerCommand('file-templates-n.useTemplate', (URI: vscode.Uri | undefined) => {
+            runCommand(useTemplate, context, false, URI);
         })
     );
 	context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates-n.useTemplates', () => {
-            runCommand(useTemplate, context, true);
+        vscode.commands.registerCommand('file-templates-n.useTemplates', (URI: vscode.Uri | undefined) => {
+            runCommand(useTemplate, context, true, URI);
         })
     );
 }
