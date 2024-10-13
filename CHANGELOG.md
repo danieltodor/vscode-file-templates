@@ -1,3 +1,11 @@
+## [0.0.9] - 2024-10-13
+### Added
+- Custom template directory can be set
+
+### Changed
+- Multiple directories can be selected from the context menu
+- Categorized settings
+
 ## [0.0.8] - 2024-10-12
 ### Added
 - Explorer context menu to be able to use templates in any directory

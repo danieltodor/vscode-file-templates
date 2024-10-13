@@ -5,6 +5,10 @@ some with pre filled content.
 When used, this extension will copy paste the content of a template into the workspace root.\
 Or if used from the explorer context menu, any directory can be a target.
 
+![Copy to root](media/root.gif)
+
+![Copy to directory](media/context.gif)
+
 ### Commands
 | Name | Description |
 | - | - |
