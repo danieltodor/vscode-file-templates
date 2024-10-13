@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as util from './util';
 
-export async function useTemplate(context: vscode.ExtensionContext, many: boolean = false, URI: vscode.Uri | undefined): Promise<void> {
+export async function useTemplate(context: vscode.ExtensionContext, many: boolean = false, URIs: vscode.Uri[] | undefined): Promise<void> {
     if (!vscode.workspace.workspaceFolders) {
         vscode.window.showErrorMessage('Open a folder/workspace first');
         return;
@@ -18,7 +18,7 @@ export async function useTemplate(context: vscode.ExtensionContext, many: boolea
         return;
     }
     const templateNames = typeof result === 'string' ? [result] : result;
-    const destinationURIs = URI ? [URI] : await getDestinationURIs();
+    const destinationURIs = URIs?.length ? URIs : await getDestinationURIs();
     for (const templateName of templateNames) {
         const sourceURI = vscode.Uri.joinPath(extensionDirectory, templateName);
         for (const destinationURI of destinationURIs) {
