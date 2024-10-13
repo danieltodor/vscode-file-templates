@@ -75,12 +75,12 @@
                         "default": "",
                         "description": "Use custom directory for the templates"
                     },
-                    "file-templates-n.dereferenceSymlinks": {
+                    "file-templates-n.copy.dereferenceSymlinks": {
                         "type": "boolean",
                         "default": true,
                         "description": "In case of a symlink, copy the file itself, instead of a symlink"
                     },
-                    "file-templates-n.force": {
+                    "file-templates-n.copy.force": {
                         "type": "boolean",
                         "default": false,
                         "description": "Overwrite existing files on conflict"
