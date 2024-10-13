@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as util from './util';
 
 export async function openTemplate(context: vscode.ExtensionContext): Promise<void> {
-    const {extensionDirectory, existingTemplates} = await util.getCommonVariables(context);
+    const {templateDirectory, existingTemplates} = await util.getCommonVariables(context);
     const templateName = await vscode.window.showQuickPick(
         existingTemplates,
         {
@@ -12,6 +12,6 @@ export async function openTemplate(context: vscode.ExtensionContext): Promise<vo
     if (!templateName) {
         return;
     }
-    const URI = vscode.Uri.joinPath(extensionDirectory, templateName);
+    const URI = vscode.Uri.joinPath(templateDirectory, templateName);
     await vscode.env.openExternal(URI);
 }

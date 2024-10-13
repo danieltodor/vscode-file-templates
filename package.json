@@ -70,6 +70,11 @@
             {
                 "title": "File/Directory Templates",
                 "properties": {
+                    "file-templates-n.template.customDirectory": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Use custom directory for the templates"
+                    },
                     "file-templates-n.dereferenceSymlinks": {
                         "type": "boolean",
                         "default": true,

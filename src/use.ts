@@ -6,7 +6,7 @@ export async function useTemplate(context: vscode.ExtensionContext, many: boolea
         vscode.window.showErrorMessage('Open a folder/workspace first');
         return;
     }
-    const {extensionDirectory, existingTemplates} = await util.getCommonVariables(context);
+    const {templateDirectory, existingTemplates} = await util.getCommonVariables(context);
     const result = await vscode.window.showQuickPick(
         existingTemplates,
         {
@@ -20,7 +20,7 @@ export async function useTemplate(context: vscode.ExtensionContext, many: boolea
     const templateNames = typeof result === 'string' ? [result] : result;
     const destinationURIs = URIs?.length ? URIs : await getDestinationURIs();
     for (const templateName of templateNames) {
-        const sourceURI = vscode.Uri.joinPath(extensionDirectory, templateName);
+        const sourceURI = vscode.Uri.joinPath(templateDirectory, templateName);
         for (const destinationURI of destinationURIs) {
             await util.copyFiles(sourceURI, destinationURI);
         }

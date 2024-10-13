@@ -18,5 +18,6 @@ Or if used from the explorer context menu, any directory can be a target.
 ### Settings
 | Name | Type | Default | Description |
 | - | - | - | - |
+| file-templates-n.template.customDirectory | string | "" | Use custom directory for the templates |
 | file-templates-n.dereferenceSymlinks | boolean | true | In case of a symlink, copy the file itself, instead of a symlink |
 | file-templates-n.force | boolean | false | Overwrite existing files on conflict |

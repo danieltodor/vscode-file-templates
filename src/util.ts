@@ -19,7 +19,11 @@ export function getConfigValue(name: string, extensionName: string = 'file-templ
     return vscode.workspace.getConfiguration(extensionName).get(name);
 }
 
-export async function getExtensionDirectory(context: vscode.ExtensionContext): Promise<vscode.Uri> {
+export async function getTemplateDirectory(context: vscode.ExtensionContext): Promise<vscode.Uri> {
+    const customDirectory = getConfigValue('template.customDirectory') as string;
+    if (customDirectory) {
+        return vscode.Uri.parse(customDirectory);
+    }
     const URI = context.globalStorageUri.with({scheme: 'file'});
     if (!context.globalState.get(State.initialized.toString())) {
         await vscode.workspace.fs.createDirectory(URI);
@@ -28,15 +32,15 @@ export async function getExtensionDirectory(context: vscode.ExtensionContext): P
     return URI;
 }
 
-export async function getTemplates(extensionDirectory: vscode.Uri): Promise<string[]> {
-    const directoryList = await vscode.workspace.fs.readDirectory(extensionDirectory);
+export async function getTemplates(templateDirectory: vscode.Uri): Promise<string[]> {
+    const directoryList = await vscode.workspace.fs.readDirectory(templateDirectory);
     return directoryList.map(item => item[0]);
 }
 
 export async function getCommonVariables(context: vscode.ExtensionContext) {
-    const extensionDirectory = await getExtensionDirectory(context);
-    const existingTemplates = await getTemplates(extensionDirectory);
-    return {extensionDirectory, existingTemplates};
+    const templateDirectory = await getTemplateDirectory(context);
+    const existingTemplates = await getTemplates(templateDirectory);
+    return {templateDirectory, existingTemplates};
 }
 
 export async function showEditableQuickPick(items: string[], options: vscode.QuickPickOptions = {}): Promise<string> {
