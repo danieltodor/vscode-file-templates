@@ -33,8 +33,9 @@ export async function getTemplateDirectory(context: vscode.ExtensionContext): Pr
 }
 
 export async function getTemplates(templateDirectory: vscode.Uri): Promise<string[]> {
-    const directoryList = await vscode.workspace.fs.readDirectory(templateDirectory);
-    return directoryList.map(item => item[0]);
+    const directoryContent = await vscode.workspace.fs.readDirectory(templateDirectory);
+    let templates = directoryContent.filter(item => item[1] === vscode.FileType.Directory);
+    return templates.map(item => item[0]);
 }
 
 export async function getCommonVariables(context: vscode.ExtensionContext) {

@@ -23,6 +23,7 @@ export async function useTemplate(context: vscode.ExtensionContext, many: boolea
         const sourceURI = vscode.Uri.joinPath(templateDirectory, templateName);
         for (const destinationURI of destinationURIs) {
             await util.copyFiles(sourceURI, destinationURI);
+            await util.sleep(0); // Prevent merged files when using multiple templates
         }
     }
 }

@@ -1,3 +1,8 @@
+## [0.0.10] - 2024-12-17
+### Fixed
+- Ignore everything but directories in the template directory
+- Prevent creating merged files in case multiple templates are used with same file(s)
+
 ## [0.0.9] - 2024-10-13
 ### Added
 - Custom template directory can be set
