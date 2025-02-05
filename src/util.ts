@@ -1,3 +1,4 @@
+import * as meta from '../package.json';
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 
@@ -15,8 +16,8 @@ export function getErrorMessage(error: unknown): string | void {
     }
 }
 
-export function getConfigValue(name: string, extensionName: string = 'file-templates-n'): unknown {
-    return vscode.workspace.getConfiguration(extensionName).get(name);
+export function getConfigValue(name: string, extensionName?: string): unknown {
+    return vscode.workspace.getConfiguration(extensionName || meta.name).get(name);
 }
 
 export async function getTemplateDirectory(context: vscode.ExtensionContext): Promise<vscode.Uri> {

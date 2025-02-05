@@ -22,6 +22,6 @@ Or if used from the explorer context menu, any directory can be a target.
 ### Settings
 | Name | Type | Default | Description |
 | - | - | - | - |
-| file-templates-n.template.customDirectory | string | "" | Use custom directory for the templates |
-| file-templates-n.copy.dereferenceSymlinks | boolean | true | In case of a symlink, copy the file itself, instead of a symlink |
-| file-templates-n.copy.force | boolean | false | Overwrite existing files on conflict |
+| File-templates-n › Template: Custom Directory | string | "" | Use custom directory for the templates |
+| File-templates-n › Copy: Dereference Symlinks | boolean | true | In case of a symlink, copy the file itself, instead of a symlink |
+| File-templates-n › Copy: Force | boolean | false | Overwrite existing files on conflict |

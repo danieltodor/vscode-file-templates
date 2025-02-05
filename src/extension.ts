@@ -1,3 +1,4 @@
+import * as meta from '../package.json';
 import * as vscode from 'vscode';
 import * as util from './util';
 import { createTemplate } from './create';
@@ -20,32 +21,32 @@ async function runCommand(command: (...args: any[]) => Promise<void>, ...args: a
 
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates-n.createTemplate', () => {
+        vscode.commands.registerCommand(`${meta.name}.createTemplate`, () => {
             runCommand(createTemplate, context);
         })
     );
 	context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates-n.openTemplate', () => {
+        vscode.commands.registerCommand(`${meta.name}.openTemplate`, () => {
             runCommand(openTemplate, context);
         })
     );
     context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates-n.renameTemplate', () => {
+        vscode.commands.registerCommand(`${meta.name}.renameTemplate`, () => {
             runCommand(renameTemplate, context);
         })
     );
     context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates-n.removeTemplate', () => {
+        vscode.commands.registerCommand(`${meta.name}.removeTemplate`, () => {
             runCommand(removeTemplate, context);
         })
     );
 	context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates-n.useTemplate', (clickedURI: vscode.Uri | undefined, selectedURIs: vscode.Uri[] | undefined) => {
+        vscode.commands.registerCommand(`${meta.name}.useTemplate`, (clickedURI: vscode.Uri | undefined, selectedURIs: vscode.Uri[] | undefined) => {
             runCommand(useTemplate, context, false, selectedURIs);
         })
     );
 	context.subscriptions.push(
-        vscode.commands.registerCommand('file-templates-n.useTemplates', (clickedURI: vscode.Uri | undefined, selectedURIs: vscode.Uri[] | undefined) => {
+        vscode.commands.registerCommand(`${meta.name}.useTemplates`, (clickedURI: vscode.Uri | undefined, selectedURIs: vscode.Uri[] | undefined) => {
             runCommand(useTemplate, context, true, selectedURIs);
         })
     );

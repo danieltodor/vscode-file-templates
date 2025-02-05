@@ -1,3 +1,7 @@
+## [0.0.11] - 2025-02-05
+### Changed
+- Extension name read from package.json
+
 ## [0.0.10] - 2024-12-17
 ### Fixed
 - Ignore everything but directories in the template directory
