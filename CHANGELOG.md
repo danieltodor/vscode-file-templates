@@ -1,3 +1,7 @@
+## [0.0.12] - 2025-03-09
+### Changed
+- Config and command prefixes changed to UI friendly names
+
 ## [0.0.11] - 2025-02-05
 ### Changed
 - Extension name read from package.json

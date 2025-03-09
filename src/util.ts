@@ -1,4 +1,3 @@
-import * as meta from '../package.json';
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 
@@ -16,14 +15,14 @@ export function getErrorMessage(error: unknown): string | void {
     }
 }
 
-export function getConfigValue(name: string, extensionName?: string): unknown {
-    return vscode.workspace.getConfiguration(extensionName || meta.name).get(name);
+export function getConfigValue(name: string): unknown {
+    return vscode.workspace.getConfiguration().get(name);
 }
 
 export async function getTemplateDirectory(context: vscode.ExtensionContext): Promise<vscode.Uri> {
-    const customDirectory = getConfigValue('template.customDirectory') as string;
+    const customDirectory = getConfigValue('fileTemplates.template.customDirectory') as string;
     if (customDirectory) {
-        return vscode.Uri.parse(customDirectory);
+        return vscode.Uri.parse(fs.realpathSync(customDirectory));
     }
     const URI = context.globalStorageUri.with({scheme: 'file'});
     if (!context.globalState.get(State.initialized.toString())) {
@@ -84,8 +83,8 @@ export async function directoryExists(URI: vscode.Uri): Promise<boolean> {
 export async function copyFiles(sourceURI: vscode.Uri, destinationURI: vscode.Uri): Promise<void> {
     const cpOptions: fs.CopyOptions = {
         recursive: true,
-        dereference: getConfigValue('copy.dereferenceSymlinks') as boolean,
-        force: getConfigValue('copy.force') as boolean
+        dereference: getConfigValue('fileTemplates.copy.dereferenceSymlinks') as boolean,
+        force: getConfigValue('fileTemplates.copy.force') as boolean
     };
     await fs.cp(sourceURI.fsPath, destinationURI.fsPath, cpOptions, (error) => {
         const message = getErrorMessage(error);

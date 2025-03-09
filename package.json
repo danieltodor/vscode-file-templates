@@ -3,7 +3,7 @@
     "displayName": "File/Directory Templates",
     "description": "Create reusable file and directory templates",
     "icon": "./media/icon.png",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "preview": false,
     "publisher": "danieltodor",
     "repository": {
@@ -22,32 +22,32 @@
     "contributes": {
         "commands": [
             {
-                "command": "file-templates-n.createTemplate",
+                "command": "fileTemplates.createTemplate",
                 "title": "Create",
                 "category": "File/Directory Templates"
             },
             {
-                "command": "file-templates-n.openTemplate",
+                "command": "fileTemplates.openTemplate",
                 "title": "Open",
                 "category": "File/Directory Templates"
             },
             {
-                "command": "file-templates-n.renameTemplate",
+                "command": "fileTemplates.renameTemplate",
                 "title": "Rename",
                 "category": "File/Directory Templates"
             },
             {
-                "command": "file-templates-n.removeTemplate",
+                "command": "fileTemplates.removeTemplate",
                 "title": "Remove",
                 "category": "File/Directory Templates"
             },
             {
-                "command": "file-templates-n.useTemplate",
+                "command": "fileTemplates.useTemplate",
                 "title": "Use Template",
                 "category": "File/Directory Templates"
             },
             {
-                "command": "file-templates-n.useTemplates",
+                "command": "fileTemplates.useTemplates",
                 "title": "Use Templates",
                 "category": "File/Directory Templates"
             }
@@ -55,12 +55,12 @@
         "menus": {
             "explorer/context": [
                 {
-                    "command": "file-templates-n.useTemplate",
+                    "command": "fileTemplates.useTemplate",
                     "when": "explorerResourceIsFolder",
                     "group": "2_workspace"
                 },
                 {
-                    "command": "file-templates-n.useTemplates",
+                    "command": "fileTemplates.useTemplates",
                     "when": "explorerResourceIsFolder",
                     "group": "2_workspace"
                 }
@@ -70,17 +70,17 @@
             {
                 "title": "File/Directory Templates",
                 "properties": {
-                    "file-templates-n.template.customDirectory": {
+                    "fileTemplates.template.customDirectory": {
                         "type": "string",
                         "default": "",
                         "description": "Use custom directory for the templates"
                     },
-                    "file-templates-n.copy.dereferenceSymlinks": {
+                    "fileTemplates.copy.dereferenceSymlinks": {
                         "type": "boolean",
                         "default": true,
                         "description": "In case of a symlink, copy the file itself, instead of a symlink"
                     },
-                    "file-templates-n.copy.force": {
+                    "fileTemplates.copy.force": {
                         "type": "boolean",
                         "default": false,
                         "description": "Overwrite existing files on conflict"
