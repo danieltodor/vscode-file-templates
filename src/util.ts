@@ -22,7 +22,7 @@ export function getConfigValue(name: string): unknown {
 export async function getTemplateDirectory(context: vscode.ExtensionContext): Promise<vscode.Uri> {
     const customDirectory = getConfigValue('fileTemplates.template.customDirectory') as string;
     if (customDirectory) {
-        return vscode.Uri.parse(fs.realpathSync(customDirectory));
+        return vscode.Uri.parse('file:' + fs.realpathSync(customDirectory));
     }
     const URI = context.globalStorageUri.with({scheme: 'file'});
     if (!context.globalState.get(State.initialized.toString())) {

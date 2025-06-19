@@ -1,3 +1,7 @@
+## [0.0.13] - 2025-06-19
+### Fixed
+- customDirectory fixed for windows
+
 ## [0.0.12] - 2025-03-09
 ### Changed
 - Config and command prefixes changed to UI friendly names
