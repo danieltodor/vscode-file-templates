@@ -32,15 +32,24 @@ export async function getTemplateDirectory(context: vscode.ExtensionContext): Pr
     return URI;
 }
 
-export async function getTemplates(templateDirectory: vscode.Uri): Promise<string[]> {
+export async function getTemplates(templateDirectory: vscode.Uri, includeVirtual: boolean = false): Promise<string[]> {
     const directoryContent = await vscode.workspace.fs.readDirectory(templateDirectory);
-    let templates = directoryContent.filter(item => item[1] === vscode.FileType.Directory);
-    return templates.map(item => item[0]);
+    let templates = directoryContent.filter(item => item[1] === vscode.FileType.Directory).map(item => item[0]);
+    if (includeVirtual) {
+        const virtualConfig = getConfigValue('fileTemplates.template.virtual') as Record<string, string[]>;
+        if (virtualConfig && typeof virtualConfig === 'object') {
+            const virtualNames = Object.keys(virtualConfig);
+            templates.push(...virtualNames);
+        }
+    }
+    templates = [...new Set(templates)];
+    templates.sort((a, b) => a.localeCompare(b));
+    return templates;
 }
 
-export async function getCommonVariables(context: vscode.ExtensionContext) {
+export async function getCommonVariables(context: vscode.ExtensionContext, includeVirtual: boolean = false) {
     const templateDirectory = await getTemplateDirectory(context);
-    const existingTemplates = await getTemplates(templateDirectory);
+    const existingTemplates = await getTemplates(templateDirectory, includeVirtual);
     return {templateDirectory, existingTemplates};
 }
 

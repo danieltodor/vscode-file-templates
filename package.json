@@ -3,7 +3,7 @@
     "displayName": "File/Directory Templates",
     "description": "Create reusable file and directory templates",
     "icon": "./media/icon.png",
-    "version": "0.0.13",
+    "version": "0.0.14",
     "preview": false,
     "publisher": "danieltodor",
     "repository": {
@@ -74,6 +74,17 @@
                         "type": "string",
                         "default": "",
                         "description": "Use custom directory for the templates"
+                    },
+                    "fileTemplates.template.virtual": {
+                        "type": "object",
+                        "default": {},
+                        "additionalProperties": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "A list of virtual templates, with their real template dependencies. You can chain multiple templates together in virtual template names"
                     },
                     "fileTemplates.copy.dereferenceSymlinks": {
                         "type": "boolean",

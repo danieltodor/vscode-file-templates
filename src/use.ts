@@ -6,7 +6,7 @@ export async function useTemplate(context: vscode.ExtensionContext, many: boolea
         vscode.window.showErrorMessage('Open a folder/workspace first');
         return;
     }
-    const {templateDirectory, existingTemplates} = await util.getCommonVariables(context);
+    const {templateDirectory, existingTemplates} = await util.getCommonVariables(context, true);
     const result = await vscode.window.showQuickPick(
         existingTemplates,
         {
@@ -18,8 +18,30 @@ export async function useTemplate(context: vscode.ExtensionContext, many: boolea
         return;
     }
     const templateNames = typeof result === 'string' ? [result] : result;
+    const virtualConfig = util.getConfigValue('fileTemplates.template.virtual') as Record<string, string[]> || {};
+
+    const resolveTemplates = (names: string[], visited: Set<string> = new Set()): string[] => {
+        const resolved: string[] = [];
+        for (const name of names) {
+            if (virtualConfig[name]) {
+                if (visited.has(name)) {
+                    vscode.window.showErrorMessage(`Circular dependency detected in virtual template: ${name}`);
+                    continue;
+                }
+                visited.add(name);
+                resolved.push(...resolveTemplates(virtualConfig[name], visited));
+                visited.delete(name);
+            } else {
+                resolved.push(name);
+            }
+        }
+        return resolved;
+    };
+
+    const flatTemplateNames = resolveTemplates(templateNames);
+
     const destinationURIs = URIs?.length ? URIs : await getDestinationURIs();
-    for (const templateName of templateNames) {
+    for (const templateName of flatTemplateNames) {
         const sourceURI = vscode.Uri.joinPath(templateDirectory, templateName);
         for (const destinationURI of destinationURIs) {
             await util.copyFiles(sourceURI, destinationURI);

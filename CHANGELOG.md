@@ -1,3 +1,7 @@
+## [0.0.14] - 2026-03-22
+### Added
+- Virtual templates
+
 ## [0.0.13] - 2025-06-19
 ### Fixed
 - customDirectory fixed for windows
