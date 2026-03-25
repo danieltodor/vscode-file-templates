@@ -53,9 +53,20 @@ export async function getCommonVariables(context: vscode.ExtensionContext, inclu
     return {templateDirectory, existingTemplates};
 }
 
-export async function showEditableQuickPick(items: string[], options: vscode.QuickPickOptions = {}): Promise<string> {
+export async function showEditableQuickPick(items: string[], options: vscode.QuickPickOptions = {}): Promise<string | undefined> {
     return new Promise((resolve) => {
         const quickPick = vscode.window.createQuickPick();
+        let settled = false;
+
+        const finish = (value: string | undefined) => {
+            if (settled) {
+                return;
+            }
+            settled = true;
+            quickPick.dispose();
+            resolve(value);
+        };
+
         quickPick.title = options.title;
         quickPick.placeholder = options.placeHolder;
         quickPick.canSelectMany = options.canPickMany || false;
@@ -70,9 +81,12 @@ export async function showEditableQuickPick(items: string[], options: vscode.Qui
             }
         });
         quickPick.onDidAccept(() => {
-            const selection = quickPick.activeItems[0];
-            resolve(selection.label);
+            const selection = quickPick.activeItems[0]?.label ?? (quickPick.value || undefined);
+            finish(selection);
             quickPick.hide();
+        });
+        quickPick.onDidHide(() => {
+            finish(undefined);
         });
         quickPick.show();
     });

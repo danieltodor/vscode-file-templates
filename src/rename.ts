@@ -9,8 +9,11 @@ export async function renameTemplate(context: vscode.ExtensionContext): Promise<
             placeHolder: 'Select the template you want to rename'
         }
     );
+    if (!templateName) {
+        return;
+    }
     const newName = await vscode.window.showInputBox({placeHolder: 'New name for the template'});
-    if (!templateName || !newName) {
+    if (!newName) {
         return;
     }
     const URI = vscode.Uri.joinPath(templateDirectory, templateName);

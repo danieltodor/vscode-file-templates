@@ -9,6 +9,9 @@ export async function createTemplate(context: vscode.ExtensionContext): Promise<
             placeHolder: 'Name of the new template'
         }
     );
+    if (!newTemplateName) {
+        return;
+    }
     const URI = await createNewTemplateDirectory(templateDirectory, newTemplateName);
     if (URI) {
         await vscode.env.openExternal(URI);

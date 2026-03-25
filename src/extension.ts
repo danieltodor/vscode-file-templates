@@ -41,12 +41,14 @@ export function activate(context: vscode.ExtensionContext) {
     );
 	context.subscriptions.push(
         vscode.commands.registerCommand('fileTemplates.useTemplate', (clickedURI: vscode.Uri | undefined, selectedURIs: vscode.Uri[] | undefined) => {
-            runCommand(useTemplate, context, false, selectedURIs);
+            const targetURIs = selectedURIs?.length ? selectedURIs : clickedURI ? [clickedURI] : undefined;
+            runCommand(useTemplate, context, false, targetURIs);
         })
     );
 	context.subscriptions.push(
         vscode.commands.registerCommand('fileTemplates.useTemplates', (clickedURI: vscode.Uri | undefined, selectedURIs: vscode.Uri[] | undefined) => {
-            runCommand(useTemplate, context, true, selectedURIs);
+            const targetURIs = selectedURIs?.length ? selectedURIs : clickedURI ? [clickedURI] : undefined;
+            runCommand(useTemplate, context, true, targetURIs);
         })
     );
 }
