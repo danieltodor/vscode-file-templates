@@ -3,7 +3,7 @@
     "displayName": "File/Directory Templates",
     "description": "Create reusable file and directory templates",
     "icon": "./media/icon.png",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "preview": false,
     "publisher": "danieltodor",
     "repository": {
@@ -73,7 +73,7 @@
                     "fileTemplates.template.customDirectory": {
                         "type": "string",
                         "default": "",
-                        "description": "Use custom directory for the templates"
+                        "markdownDescription": "Use custom directory for the templates"
                     },
                     "fileTemplates.template.virtual": {
                         "type": "object",
@@ -84,17 +84,17 @@
                                 "type": "string"
                             }
                         },
-                        "description": "A list of virtual templates, with their real template dependencies. You can chain multiple templates together in virtual template names"
+                        "markdownDescription": "You can chain multiple templates together with virtual templates. `{\"Virtual 1\": [\"Real 1\", \"Real 2\"], \"Virtual 2\": [\"Virtual 1\", \"Real 3\"]}`"
                     },
                     "fileTemplates.copy.dereferenceSymlinks": {
                         "type": "boolean",
                         "default": true,
-                        "description": "In case of a symlink, copy the file itself, instead of a symlink"
+                        "markdownDescription": "In case of a symlink, copy the file itself, instead of a symlink"
                     },
                     "fileTemplates.copy.force": {
                         "type": "boolean",
                         "default": false,
-                        "description": "Overwrite existing files on conflict"
+                        "markdownDescription": "Overwrite existing files on conflict"
                     }
                 }
             }

@@ -23,6 +23,6 @@ Or if used from the explorer context menu, any directory can be a target.
 | Name | Type | Default | Description |
 | - | - | - | - |
 | File Templates › Template: Custom Directory | string | "" | Use custom directory for the templates |
-| File Templates › Template: Virtual | object | {} | A list of virtual templates, with their real template dependencies. You can chain multiple templates together in virtual template names |
+| File Templates › Template: Virtual | object | {} | You can chain multiple templates together with virtual templates. `{"Virtual 1": ["Real 1", "Real 2"], "Virtual 2": ["Virtual 1", "Real 3"]}` |
 | File Templates › Copy: Dereference Symlinks | boolean | true | In case of a symlink, copy the file itself, instead of a symlink |
 | File Templates › Copy: Force | boolean | false | Overwrite existing files on conflict |
