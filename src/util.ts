@@ -109,10 +109,13 @@ export async function copyFiles(sourceURI: vscode.Uri, destinationURI: vscode.Ur
         dereference: getConfigValue('fileTemplates.copy.dereferenceSymlinks') as boolean,
         force: getConfigValue('fileTemplates.copy.force') as boolean
     };
-    await fs.cp(sourceURI.fsPath, destinationURI.fsPath, cpOptions, (error) => {
+    try {
+        await fs.promises.cp(sourceURI.fsPath, destinationURI.fsPath, cpOptions);
+    }
+    catch (error) {
         const message = getErrorMessage(error);
         if (message) {
             vscode.window.showErrorMessage(message);
         }
-    });
+    }
 }
